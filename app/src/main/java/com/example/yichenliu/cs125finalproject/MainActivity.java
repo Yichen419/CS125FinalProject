@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Toast;
 import android.widget.ImageView;
 import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
+
 
 public class MainActivity extends AppCompatActivity {
     private static ImageView imgview;
@@ -45,30 +48,62 @@ public class MainActivity extends AppCompatActivity {
         btnDislike.setText("Not Really");
         Button btnDecide = (Button) findViewById(R.id.btnDecision);
         btnDecide.setText("THIS IS IT!");
+        Button btnGo = (Button) findViewById(R.id.btnGo);
+        btnGo.setText("FEED ME!");
         // do something when the button is clicked;
-        btnLike.setOnClickListener(new View.OnClickListener() {
+        btnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imgview = (ImageView)findViewById(R.id.imageView);
-                if (currentImage % 7 == 0) {
-                    asianFoodCount++;
-                } else if (currentImage % 7 == 1) {
-                    bbqCount++;
-                } else if (currentImage % 7 == 2) {
-                    burgerCount++;
-                } else if (currentImage % 7 == 3) {
-                    italianCount++;
-                } else if (currentImage % 7 == 4) {
-                    mexicanCount++;
-                } else if (currentImage % 7 == 5) {
-                    seafoodCount++;
-                } else if (currentImage % 7 == 6) {
-                    veggieCount++;
-                }
                 currentImage++;
                 currentImage = currentImage % images.length;
                 imgview.setImageResource(images[currentImage]);
-                counter++;
+                View a = findViewById(R.id.btnGo);
+                a.setVisibility(View.GONE);
+                View b = findViewById(R.id.btnLike);
+                b.setVisibility(View.VISIBLE);
+                View c = findViewById(R.id.btnDislike);
+                c.setVisibility(View.VISIBLE);
+                View d = findViewById(R.id.btnDecision);
+                d.setVisibility(View.VISIBLE);
+
+            }
+        });
+        btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (counter < images.length) {
+                    imgview = (ImageView)findViewById(R.id.imageView);
+                    if (currentImage % 7 == 0) {
+                        asianFoodCount++;
+                    } else if (currentImage % 7 == 1) {
+                        bbqCount++;
+                    } else if (currentImage % 7 == 2) {
+                        burgerCount++;
+                    } else if (currentImage % 7 == 3) {
+                        italianCount++;
+                    } else if (currentImage % 7 == 4) {
+                        mexicanCount++;
+                    } else if (currentImage % 7 == 5) {
+                        seafoodCount++;
+                    } else if (currentImage % 7 == 6) {
+                        veggieCount++;
+                    }
+                    currentImage++;
+                    currentImage = currentImage % images.length;
+                    imgview.setImageResource(images[currentImage]);
+                    counter++;
+                } else {
+                    if (asianFoodCount == bbqCount
+                            && asianFoodCount == burgerCount
+                            && asianFoodCount == italianCount
+                            && asianFoodCount == mexicanCount
+                            && asianFoodCount ==seafoodCount
+                            && asianFoodCount == veggieCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=food_near_me"));
+                        startActivity(browserIntent);
+                    }
+                }
             }
         });
         btnDislike.setOnClickListener(new View.OnClickListener() {

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.support.v7.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
+import java.lang.Math;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -100,7 +101,29 @@ public class MainActivity extends AppCompatActivity {
                             && asianFoodCount == mexicanCount
                             && asianFoodCount ==seafoodCount
                             && asianFoodCount == veggieCount) {
-                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=food_near_me"));
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=food+near+me"));
+                        startActivity(browserIntent);
+                    }
+                    int[] results = new int[] {asianFoodCount, bbqCount, burgerCount, italianCount, mexicanCount, seafoodCount, veggieCount};
+                    Max input = new Max(results);
+                    int max = input.max();
+                    if (max == asianFoodCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=asian+food+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == burgerCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=burger+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == italianCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=italian+food+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == mexicanCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=mexican+food+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == seafoodCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=seafood+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == veggieCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=veggie+restaurant+near+me"));
                         startActivity(browserIntent);
                     }
                 }
@@ -109,20 +132,87 @@ public class MainActivity extends AppCompatActivity {
         btnDislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imgview = (ImageView)findViewById(R.id.imageView);
-                currentImage++;
-                currentImage = currentImage % images.length;
-                imgview.setImageResource(images[currentImage]);
-                counter++;
+                if (counter < images.length) {
+                    imgview = (ImageView)findViewById(R.id.imageView);
+                    if (currentImage % 7 == 0) {
+                        asianFoodCount++;
+                    } else if (currentImage % 7 == 1) {
+                        bbqCount--;
+                    } else if (currentImage % 7 == 2) {
+                        burgerCount--;
+                    } else if (currentImage % 7 == 3) {
+                        italianCount--;
+                    } else if (currentImage % 7 == 4) {
+                        mexicanCount--;
+                    } else if (currentImage % 7 == 5) {
+                        seafoodCount--;
+                    } else if (currentImage % 7 == 6) {
+                        veggieCount--;
+                    }
+                    currentImage++;
+                    currentImage = currentImage % images.length;
+                    imgview.setImageResource(images[currentImage]);
+                    counter++;
+                } else {
+                    if (asianFoodCount == bbqCount
+                            && asianFoodCount == burgerCount
+                            && asianFoodCount == italianCount
+                            && asianFoodCount == mexicanCount
+                            && asianFoodCount ==seafoodCount
+                            && asianFoodCount == veggieCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=food+near+me"));
+                        startActivity(browserIntent);
+                    }
+                    int[] results = new int[] {asianFoodCount, bbqCount, burgerCount, italianCount, mexicanCount, seafoodCount, veggieCount};
+                    Max input = new Max(results);
+                    int max = input.max();
+                    if (max == asianFoodCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=asian+food+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == burgerCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=burger+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == italianCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=italian+food+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == mexicanCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=mexican+food+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == seafoodCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=seafood+near+me"));
+                        startActivity(browserIntent);
+                    } else if (max == veggieCount) {
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=veggie+restaurant+near+me"));
+                        startActivity(browserIntent);
+                    }
+                }
             }
         });
         btnDecide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                imgview = (ImageView)findViewById(R.id.imageView);
-                currentImage++;
-                currentImage = currentImage % images.length;
-                imgview.setImageResource(images[currentImage]);
+                if (currentImage % 7 == 0) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=asian+food+near+me"));
+                    startActivity(browserIntent);
+                } else if (currentImage % 7 == 1) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=bbq+near+me"));
+                    startActivity(browserIntent);
+                } else if (currentImage % 7 == 2) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=burger+near+me"));
+                    startActivity(browserIntent);
+                } else if (currentImage % 7 == 3) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=italian+food+near+me"));
+                    startActivity(browserIntent);
+                } else if (currentImage % 7 == 4) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=mexican+food+near+me"));
+                    startActivity(browserIntent);
+                } else if (currentImage % 7 == 5) {
+                    seafoodCount++;Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=seafood+near+me"));
+                    startActivity(browserIntent);
+                } else if (currentImage % 7 == 6) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://google.com/search?q=veggie+restaurant+near+me"));
+                    startActivity(browserIntent);
+                }
             }
         });
     }

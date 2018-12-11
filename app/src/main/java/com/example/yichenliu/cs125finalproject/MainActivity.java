@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     currentImage++;
                     currentImage = currentImage % images.length;
                     imgview.setImageResource(images[currentImage]);
-                    counter++;
+                    counter++; // 
                 } else {
                     if (asianFoodCount == bbqCount
                             && asianFoodCount == burgerCount
